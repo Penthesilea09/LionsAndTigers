@@ -16,4 +16,9 @@ struct Tiger {
     var breed = ""
     var image:UIImage = UIImage(named: "")
     
+    func chuff(){
+        //https://www.youtube.com/watch?v=5Ksr0-H1gmI
+        println("Chuff Chuff")
+    }
+    
 }

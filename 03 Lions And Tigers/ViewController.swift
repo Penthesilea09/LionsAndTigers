@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var breedLabel: UILabel!
     
+    @IBOutlet weak var videoWebView: UIWebView!
+    
     var tigersArray:[Tiger] = []
     var previousNumber:Int!
     
@@ -31,6 +33,7 @@ class ViewController: UIViewController {
         myTiger.breed = "Tigre Bengali"
         myTiger.age = 3
         myTiger.image = UIImage(named: "BengalTiger.jpg")
+        myTiger.chuff()
         
         var secondTiger = Tiger()
         secondTiger.name = "Tigresa"
@@ -50,22 +53,24 @@ class ViewController: UIViewController {
         fourthTiger.age = 5
         fourthTiger.image = UIImage(named: "SiberianTiger.jpg")
         
-        //creamos un array de Tigres
-        //create an array of Tigers
-        tigersArray = [myTiger, secondTiger, thirdTiger, fourthTiger]
+        //añadimos los tigres al array
+        //adding tigers to the array
+        self.tigersArray = [myTiger, secondTiger, thirdTiger, fourthTiger]
         
         //hacemos que el primer tigre sea aleatorio creando un numero aleatorio y asignandolo al indice del array de Tigres
         //First Tiger random by creating a random number and assign it to de Tiger Array´s index
         var numeroAleatorio = Int(arc4random_uniform(UInt32(tigersArray.count)))
         
-        myImageView.image = tigersArray[numeroAleatorio].image
-        nameLabel.text = tigersArray[numeroAleatorio].name
-        ageLabel.text = ("\(tigersArray[numeroAleatorio].age)")
-        breedLabel.text = tigersArray[numeroAleatorio].breed
+        self.myImageView.image = tigersArray[numeroAleatorio].image
+        self.nameLabel.text = tigersArray[numeroAleatorio].name
+        self.ageLabel.text = ("\(tigersArray[numeroAleatorio].age)")
+        self.breedLabel.text = tigersArray[numeroAleatorio].breed
         
         //asignamos el numero aleatorio al numero anterior para inicializar el previousNumber y que al apretar el boton siguiente no sea el mismo
         //assign the random number to the previous number to initialize previousNumber and when nextButton is pressed previous number won't be the same
-        previousNumber = numeroAleatorio
+        self.previousNumber = numeroAleatorio
+        
+        self.videoWebView.hidden = true
         
     }
 
@@ -81,10 +86,10 @@ class ViewController: UIViewController {
     {
         
         var numeroAleatorio = Int(arc4random_uniform(UInt32(tigersArray.count)))
-        println("numero aleatorio: \(numeroAleatorio) y previous: \(previousNumber)")
+        
         //si el numero aleatorio es igual al numero anterior
         //if random is same to previous
-        if numeroAleatorio == previousNumber{
+        if numeroAleatorio == self.previousNumber{
             //Y es el primer item del array
             //and if it's the first item of the array
             if numeroAleatorio == 0{
@@ -92,10 +97,10 @@ class ViewController: UIViewController {
             }
             //si es el ultimo item del array
             //if it's the last item of the array
-            else if numeroAleatorio == (tigersArray.count) - 1{
+            else if numeroAleatorio == (self.tigersArray.count) - 1{
                 numeroAleatorio -= 1
             }
-            //si no el numero no es ni el primero ni el ultimo
+            //si el numero no es ni el primero ni el ultimo
             //if it's not the first nor the last
             else{
                 //para que todo sea aleatorio creamos un 1 o un 0 aleatorio, si el numero es 1 suma y si es 0 resta
@@ -112,12 +117,29 @@ class ViewController: UIViewController {
             //the random number is not the same than the previous
         }
         
-        myImageView.image = tigersArray[numeroAleatorio].image
-        nameLabel.text = tigersArray[numeroAleatorio].name
-        ageLabel.text = ("\(tigersArray[numeroAleatorio].age)")
-        breedLabel.text = tigersArray[numeroAleatorio].breed
+        //animando la transicion entre vistas
+        //animating transitions between views
+        UIView.transitionWithView(self.view, duration: 0.8, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:{
+            self.myImageView.image = self.tigersArray[numeroAleatorio].image
+            self.nameLabel.text = self.tigersArray[numeroAleatorio].name
+            self.ageLabel.text = ("\(self.tigersArray[numeroAleatorio].age)")
+            self.breedLabel.text = self.tigersArray[numeroAleatorio].breed
+            }, completion: { (finished:Bool) -> () in
+        })
+        
         
         previousNumber = numeroAleatorio
+    }
+    
+    @IBAction func CuffBarButtonItem(sender: UIBarButtonItem)
+    {
+        //cuando apretamos el boton chuff, se reproduce el video donde el tigre hace chuff chuff
+        //when we press the chuff button, it plays the video where the tiger says chuff chuff
+        self.videoWebView.hidden = false
+        
+        var url = NSURL.URLWithString("http://www.youtube.com/embed/5Ksr0-H1gmI")
+        var urlRequest = NSURLRequest( URL: url)
+        self.videoWebView .loadRequest(urlRequest)
     }
 
 }

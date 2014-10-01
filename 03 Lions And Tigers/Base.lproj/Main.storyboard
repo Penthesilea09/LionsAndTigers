@@ -22,20 +22,6 @@
                                     <rect key="frame" x="16" y="28" width="343" height="240"/>
                                 </variation>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jp9-jJ-upC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Awz-S6-57m"/>
-                                    <barButtonItem title="Siguiente" id="Csm-6r-EZd">
-                                        <connections>
-                                            <action selector="nextBarButtonItem:" destination="vXZ-lx-hvc" id="GAf-W7-bKk"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                </variation>
-                            </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nombre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drJ-yc-MeL">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -90,30 +76,58 @@
                                     <rect key="frame" x="91" y="331" width="268" height="21"/>
                                 </variation>
                             </label>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OvY-Gc-gRz">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="382" width="343" height="193"/>
+                                </variation>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jp9-jJ-upC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem title="Chuff" id="VRR-IX-eTB">
+                                        <connections>
+                                            <action selector="CuffBarButtonItem:" destination="vXZ-lx-hvc" id="afU-uy-mYU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Awz-S6-57m"/>
+                                    <barButtonItem title="Siguiente" id="Csm-6r-EZd">
+                                        <connections>
+                                            <action selector="nextBarButtonItem:" destination="vXZ-lx-hvc" id="GAf-W7-bKk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                </variation>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Q61-Od-oEG"/>
-                                <exclude reference="jp9-jJ-upC"/>
                                 <exclude reference="drJ-yc-MeL"/>
                                 <exclude reference="n9y-nE-vB9"/>
                                 <exclude reference="uVw-9W-m7M"/>
                                 <exclude reference="n0J-DZ-y0C"/>
                                 <exclude reference="Vka-n7-TiZ"/>
                                 <exclude reference="76d-3k-XkY"/>
+                                <exclude reference="OvY-Gc-gRz"/>
+                                <exclude reference="jp9-jJ-upC"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Q61-Od-oEG"/>
-                                <include reference="jp9-jJ-upC"/>
                                 <include reference="drJ-yc-MeL"/>
                                 <include reference="n9y-nE-vB9"/>
                                 <include reference="uVw-9W-m7M"/>
                                 <include reference="n0J-DZ-y0C"/>
                                 <include reference="Vka-n7-TiZ"/>
                                 <include reference="76d-3k-XkY"/>
+                                <include reference="OvY-Gc-gRz"/>
+                                <include reference="jp9-jJ-upC"/>
                             </mask>
                         </variation>
                     </view>
@@ -124,6 +138,7 @@
                         <outlet property="breedLabel" destination="76d-3k-XkY" id="l5X-m2-zbM"/>
                         <outlet property="myImageView" destination="Q61-Od-oEG" id="60B-Zz-orR"/>
                         <outlet property="nameLabel" destination="drJ-yc-MeL" id="h5U-U9-7Q2"/>
+                        <outlet property="videoWebView" destination="OvY-Gc-gRz" id="BxH-rB-eP2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
